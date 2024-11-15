@@ -160,6 +160,8 @@ def playBillingSdkVersion = getExtOrDefault("playBillingSdkVersion")
 dependencies {
   implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+  implementation "androidx.annotation:annotation:1.7.1"
+  implementation "androidx.browser:browser:1.7.0"
 
   testImplementation "junit:junit:4.13.2"
   testImplementation "io.mockk:mockk:1.13.5"
@@ -168,23 +170,6 @@ dependencies {
   playImplementation "com.google.android.gms:play-services-base:$playServicesVersion"
 
   amazonImplementation  "com.amazon.device:amazon-appstore-sdk:$amazonSdkVersion"
-
-  if (supportLibVersion && androidXVersion == null) {
-    implementation "com.android.support:support-annotations:$supportLibVersion"
-    implementation "com.android.support:customtabs:$supportLibVersion"
-  } else {
-    def defaultAndroidXVersion = "1.2.0"
-
-    if (androidXVersion == null) {
-      androidXVersion = defaultAndroidXVersion
-    }
-
-    def annotationVersion = androidXAnnotation ? androidXAnnotation : androidXVersion
-    def browserVersion = androidXBrowser ? androidXBrowser : androidXVersion
-
-    implementation "androidx.annotation:annotation:$annotationVersion"
-    implementation "androidx.browser:browser:$browserVersion"
-  }
 }
 
 if (isNewArchitectureEnabled()) {
